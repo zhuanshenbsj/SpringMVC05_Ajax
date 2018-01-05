@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>demo1.html</title>
+<script type="text/javascript" src="JS/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//页面载入完毕后调用function
+	$("#loadBtn").click(function(){
+		//发送ajax请求
+		$.ajax({
+			url:"demo1.do",//要求发送的地址
+			type:"post",//post提交
+			dataType:"json",//返回jason类型
+			success:function(resault){//resault接收json内容
+				var msg="";
+				msg+="用户名:"+resault.name+"<br/>";
+				msg+="性别:"+resault.sex+"<br/>";
+				$("#user_show").html(msg);
+			},
+			error:function(){
+				alert("数据加载错误");
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<input type="button" id="loadBtn" value="采用ajax方式加载用户信息"/>
+	<hr/>
+	<div id="user_show"></div>
+</body>
+</html>
